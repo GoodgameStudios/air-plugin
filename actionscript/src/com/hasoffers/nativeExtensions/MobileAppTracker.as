@@ -59,7 +59,7 @@ package com.hasoffers.nativeExtensions
         }
 
         // Initialize the extension by calling our "initNativeCode" ANE function
-        private static function initExtension(matAdvertiserId:String, matConversionKey:String):void
+        private function initExtension(matAdvertiserId:String, matConversionKey:String):void
         {
             trace("MATAS.initExtension(" + matAdvertiserId + ", " + matConversionKey + "): Create an extension context");
 
@@ -440,7 +440,7 @@ package com.hasoffers.nativeExtensions
             extContext.call(NativeMethods.destroyInterstitial);
         }
 
-        public static function onStatusEvent(event:StatusEvent):void
+        public function onStatusEvent(event:StatusEvent):void
         {
             trace("MATAS.statusHandler(): " + event);
             if("success" == event.code)
@@ -455,6 +455,7 @@ package com.hasoffers.nativeExtensions
             {
                 trackerDidEnqueueRequest(event.level);
             }
+            dispatchEvent(new StatusEvent(event.code, false, false, event.code, event.level));
         }
 
         public static function trackerDidSucceed(data:String):void
