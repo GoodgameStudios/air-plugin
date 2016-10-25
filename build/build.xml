@@ -9,7 +9,7 @@
     <property environment="env" />
 
     <!-- All -->
-    <target name="all" depends="clean,android,ios,swc,package" description="Full build of extension">
+    <target name="all" depends="clean,swc,android,ios,package" description="Full build of extension">
         <echo level="verbose">TUNE AIR Native Extension created!</echo>
     </target>
 
@@ -119,14 +119,14 @@
         <mkdir dir="../android/temp/zip"/>
 
         <unzip src="${android.sdk}/extras/google/m2repository/com/google/android/gms/play-services-basement/${google-play-services-version}/play-services-basement-${google-play-services-version}.aar" dest="../android/temp/zip/play-services-basement-${google-play-services-version}"/>
-        <copy tofile="../temp/android/play-services-basement.jar" file="../android/temp/zip/play-services-basement-${google-play-services-version}/classes.jar" overwrite="true" />
-        <copy tofile="../temp/android/google-play-services-res/values/values.xml" file="../android/temp/zip/play-services-basement-${google-play-services-version}/res/values/values.xml" overwrite="true" />
+        <copy tofile="../android/temp/play-services-basement.jar" file="../android/temp/zip/play-services-basement-${google-play-services-version}/classes.jar" overwrite="true" />
+        <!-- <copy tofile="../temp/android/google-play-services-res/values/values.xml" file="../android/temp/zip/play-services-basement-${google-play-services-version}/res/values/values.xml" overwrite="true" /> -->
 
         <javac srcdir="../android/src" destdir="../android/temp/classes" includeantruntime="false">
             <classpath>
                 <fileset dir="${android.sdk}/platforms/android-23" includes="android.jar"/>
                 <fileset dir="${flex.sdk}/lib/android/" includes="FlashRuntimeExtensions.jar"/>
-                <fileset dir="../temp/android" includes="play-services-basement.jar"/>
+                <fileset dir="../android/temp" includes="play-services-basement.jar"/>
                 <fileset dir="../android/libs/" includes="android-support-v4.jar"/>
                 <fileset dir="../android/libs/" includes="eventbus-2.4.0.jar"/>
                 <fileset dir="../android/libs/" includes="TuneMarketingConsoleSDK-4.6.0.jar"/>
@@ -134,7 +134,7 @@
         </javac>
 
         <unzip src="../android/libs/eventbus-2.4.0.jar" dest="../android/temp/zip"/>
-        <unzip src="../android/libs/android-support-v4.jar" dest="../android/temp/zip"/>
+        <!-- <unzip src="../android/libs/android-support-v4.jar" dest="../android/temp/zip"/> -->
         <unzip src="../android/libs/TuneMarketingConsoleSDK-4.6.0.jar" dest="../android/temp/zip"/>
 
         <copy todir="../android/temp/classes/com" overwrite="true">
@@ -147,11 +147,11 @@
                 <include name="**/*"/>
             </fileset>
         </copy>
-        <copy todir="../android/temp/classes/android" overwrite="true">
+        <!-- <copy todir="../android/temp/classes/android" overwrite="true">
             <fileset dir="../android/temp/zip/android" >
                 <include name="**/*"/>
             </fileset>
-        </copy>
+        </copy> -->
 
         <mkdir dir="../temp/android/"/>
         <jar basedir="../android/temp/classes" destfile="../temp/android/lib${name}.jar"/>

@@ -1,11 +1,4 @@
 <platform xmlns="http://ns.adobe.com/air/extension/22.0">
-    <packagedDependencies>
-        <packagedDependency>play-services-basement.jar</packagedDependency>
-    </packagedDependencies>
     <packagedResources>
-        <packagedResource>
-            <packageName>com.google.android.gms</packageName>
-            <folderName>google-play-services-res</folderName>
-        </packagedResource>
     </packagedResources>
 </platform>
