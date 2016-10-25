@@ -122,7 +122,7 @@
         <copy tofile="../android/temp/play-services-basement.jar" file="../android/temp/zip/play-services-basement-${google-play-services-version}/classes.jar" overwrite="true" />
         <!-- <copy tofile="../temp/android/google-play-services-res/values/values.xml" file="../android/temp/zip/play-services-basement-${google-play-services-version}/res/values/values.xml" overwrite="true" /> -->
 
-        <javac srcdir="../android/src" destdir="../android/temp/classes" includeantruntime="false">
+        <javac source="1.6" target="1.7" srcdir="../android/src" destdir="../android/temp/classes" includeantruntime="false">
             <classpath>
                 <fileset dir="${android.sdk}/platforms/android-23" includes="android.jar"/>
                 <fileset dir="${flex.sdk}/lib/android/" includes="FlashRuntimeExtensions.jar"/>
